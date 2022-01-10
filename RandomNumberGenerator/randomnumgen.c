@@ -8,12 +8,12 @@ void print(int *input) {
 
     printf("\n");
     printf("------------------------\n");
-    printf("|  Password generator  |\n");
+    printf("|  Number generator  |\n");
     printf("|      Version 0.1     |\n");
     printf("------------------------\n");
     printf("\n");
 
-    printf("Length of password? \n");
+    printf("Length of number? \n");
 
     scanf("%d", input);
 
@@ -39,7 +39,7 @@ int main() {
         return 0;
     }
     
-    printf("Generated password: ");
+    printf("Generated number: ");
 
     for(t = 0; t <= f - 1;t++) {
 
