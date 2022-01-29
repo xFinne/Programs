@@ -3,12 +3,20 @@
 #include <math.h>
 #include <string.h>
 #include <ctype.h>
+#include <time.h>
+
+//make certain numbers removable
 
 void print(int *input) {
 
+    char yn[1];
+    const char y[1] = {'y'};
+    int xc;
+    int *pxc = &xc;
+
     printf("\n");
     printf("------------------------\n");
-    printf("|  Number generator  |\n");
+    printf("|   Number generator   |\n");
     printf("|      Version 0.1     |\n");
     printf("------------------------\n");
     printf("\n");
@@ -16,37 +24,60 @@ void print(int *input) {
     printf("Length of number? \n");
 
     scanf("%d", input);
-
     printf("\n");
 
+    printf("Exclude numbers? (y/n) \n");
+
+    scanf("%s", yn);
+    printf("\n");
+
+    int res = strcmp(yn, y);
+
+    if(res == -1) {
+        printf("What number to exclude? \n");
+        scanf("%d", &xc);
+        fill_array(&pxc, &input);
+    } else {
+        fill_array(&pxc, &input);
+    }
+}
+
+int fill_array(int **pxc, int **input) {
+
+    srand(time(NULL));
+    int numbers[**input];
+
+    for(int i = 0; **input > i; i++) {   //fill array
+        numbers[i] = (rand() % 10);
+        while(numbers[i] == **pxc) {
+                numbers[i] = (rand() % 10);
+        }
+    }
+    printf("Generated number: \n");
+
+        for(int e = 0; **input > e; e++) {   //print array
+        printf("%d", numbers[e]);
+    }
+    return 1;
 }
 
 int main() {
 
-    int temp;
-    int t;
     int f;
     int *input = &f;
 
-    print(input);
+    print(&input);
 
-    if(f <= 0) {
+// fix!!!
+//    if(f != sizeof(int)) {
+//
+//        printf("Input has to be over 0 and an integer\n");  
+//       printf("Quitting program\n");
+//        printf("----------------\n");
+//        system("pause");
+//        return 0;
+//    }
 
-        printf("Input has to be over 0\n");  
-        printf("Quitting program\n");
-        printf("----------------\n");
-        system("pause");
-        return 0;
-    }
-    
-    printf("Generated number: ");
-
-    for(t = 0; t <= f - 1;t++) {
-
-        temp = (rand() % 10);
-        printf("%d", temp);
-    }
     printf("\n");
-    system("pause");    
-    return 0;
+    system("pause"); 
 }
