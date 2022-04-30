@@ -1,1 +1,1 @@
-## projects for fun
+## Various projects
